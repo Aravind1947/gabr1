@@ -4,6 +4,10 @@ on:
       - master
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   build_and_package:
     name: BUILD-JOB
@@ -34,6 +38,11 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: artifact-7
+          path: |
+            package*
+
+      - name: Deploy
+        run: echo "Code is deployed"
           path: |
             package*
 
