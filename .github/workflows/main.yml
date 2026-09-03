@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build_and_package:
+    name: BUILD-JOB
+    runs-on: ubuntu-slim
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+      - name: BUILD
+        run: npm install
+
+      - name: TEST
+        run: echo "Code is tested!"
+
+      - name: Artifact upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: artifact-7
+          path: |
+            package*
+
+      - name: Deploy
+        run: echo "Code is deployed"
