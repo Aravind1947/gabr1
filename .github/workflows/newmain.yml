@@ -1,4 +1,4 @@
-name: CI-WORKFLOW
+name: newmain
 on:
   push:
     branches: [ "master", "main", "dev" ]
