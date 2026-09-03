@@ -17,6 +17,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
@@ -28,9 +31,6 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
-      - name: BUILD
-        run: npm install
-
       - name: TEST
         run: echo "Code is tested!"
 
@@ -38,11 +38,6 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: artifact-7
-          path: |
-            package*
-
-      - name: Deploy
-        run: echo "Code is deployed"
           path: |
             package*
 
