@@ -49,7 +49,6 @@ jobs:
 
 
   test:
-    needs: build
     runs-on: ubuntu-slim
 
     steps:
@@ -58,8 +57,7 @@ jobs:
 
 
   security:
-    needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Security Check
